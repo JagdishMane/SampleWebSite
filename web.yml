@@ -1,0 +1,15 @@
+---
+- name: COnfigure web systems
+  hosts: web
+  tasks:
+  - name: Install httpd
+    yum: name=httpd state=latest
+
+  - name: Start service
+    service: name=httpd state=started enabled=yes 
+
+  - name: Unarchive
+    unarchive:
+      src: "http://repo.example.com/website.tgz"
+      dest: /var/www/html/
+      remote_src: yes
